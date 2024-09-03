@@ -14,8 +14,6 @@ assignees: ''
 
 ### List of models and their properties
 
-### Scrum manager/project manager's name
-
 ### User stories
 
 ### Wireframes
