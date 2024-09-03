@@ -1,13 +1,13 @@
 ---
 name: Project proposal submission
 about: Issue to submit project proposal
-title: Your Group Names + Squad Lead
+title: Your name + Squad Lead
 labels: ''
 assignees: ''
 
 ---
 
-### Your group members
+### Your name
 
 ### Your project idea 
 >Brief 2-3 sentence description of your app
