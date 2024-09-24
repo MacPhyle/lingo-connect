@@ -2,6 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import threading
 
 
 def main():
@@ -15,6 +16,11 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+        
+    #Increase recursion limit
+    threading.stack_size(2 * 1024 * 1024)
+    sys.setrecursionlimit(1500)
+    
     execute_from_command_line(sys.argv)
 
 
