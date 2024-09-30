@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'app',
 ]
 
@@ -48,7 +53,12 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'allauth.account.middleware.AccountMiddleware',
 ]
+
+CSRF_COOKIE_SECURE = False
+CSRF_USE_SESSIONS = True
+SESSION_COOKIE_SECURE = False
 
 ROOT_URLCONF = "lingoconnect.urls"
 
@@ -70,9 +80,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "lingoconnect.wsgi.application"
 
+# BOWER_COMPONENTS_ROOT = '/PROJECT_ROOT/components/'
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+
+# STATICFILES_FINDERS = (
+#     'djangobower.finders.BowerFinder',
+# )
 
 DATABASES = {
     "default": {
@@ -81,6 +97,16 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+LOGIN_URL = '/login/'
+
+LOGIN_REDIRECT_URL = '/'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

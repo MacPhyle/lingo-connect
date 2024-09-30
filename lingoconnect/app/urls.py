@@ -15,19 +15,29 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 # from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from . import views
+from django.contrib.auth import views as auth_views
+from .forms import CustomAuthenticationForm
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    # path("admin/", admin.site.urls),
-    # path('app/', include('app.urls')),
     path('', views.home, name='home'),
-    path('add_account/', views.add_account, name='add_account'),
-    path('profile/', views.profile, name='profile'),
-    path('learning_apps/', views.learning_apps, name='learning_apps'),
-    path('add_event/', views.add_event, name='add_event'),
-    path('event_details/<int:event_id>/', views.event_details, name='event_details'),
+    path('calendar/', views.calendar_view, name='calendar'),
+    path('calendar/<int:year>/<int:month>/<int:day>/', views.date_details, name='date_details'),
+    path('calendar/create_event/', views.create_event, name='create_event'),
+    path('update/<int:id>/', views.update_event, name='update_event'),
+    path('delete/<int:id>/', views.delete_event, name='delete_event'),
+    # path('calendar/event_data/', views.event_data, name='event_data'),
+    path('login/', views.CustomLoginView.as_view(), name='login'),
     path('chat/', views.chat, name='chat'),
     path('forum/', views.forum, name='forum'),
-    path('calendar/', views.calendar, name='calendar'),
-]  
+    path('register/', views.register, name='register'),
+    path('profile/', views.profile, name='profile'),
+    path('update_profile/', views.update_profile, name='update_profile'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('contact/', views.contact, name='contact'),
+    path('learning_apps/', views.learning_apps, name='learning_apps'),
+    path('accounts/', include('allauth.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

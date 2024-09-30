@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Event{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Add an Event</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Event</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function initAutocomplete() {
+        var input = document.getElementById('location-input');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+            }
+        });
+
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+            // document.getElementById('latitude').value = place.geometry.location.lat();
+            // document.getElementById('longitude').value = place.geometry.location.lng();
+            if (!place.geometry) {
+                return;
+            }
+            input.value = place.formatted_address;
+        });
+    }
+
+    if(typeof google === 'object' && typeof google.maps === 'object') {
+        initAutocomplete();
+    } else {
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof google === 'object' && typeof google.maps === 'object') {
+                initAutocomplete();
+            } else {
+                console.error('Google Maps JavaScript API is not loaded.');
+            }
+        });
+    }
+    // google.maps.event.addDomListener(window, 'load', initAutocomplete);
+</script>
+{% endblock %}

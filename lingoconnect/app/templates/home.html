@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
-    {% extends 'base.html' %} {% block content %}
-    <h1>Welcome to Lingo Connect</h1>
-    <p>Connect with other language learners and practice your language skills!</p>
+    {% extends 'base.html' %}
+    
+    {% block content %}
+        <h1>Welcome to Lingo Connect</h1>
+        <p>Connect with other language learners and practice your language skills!</p>
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+        <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
     {% endblock %}
 </body>
 </html>

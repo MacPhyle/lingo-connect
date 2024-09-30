@@ -1,9 +1,13 @@
-#!/usr/bin/env python
-"""Django's command-line utility for administrative tasks."""
 import os
 import sys
 import threading
 
+#!/usr/bin/env python
+"""Django's command-line utility for administrative tasks."""
+
+venv_site_packages = os.path.join(os.path.dirname(__file__), 'venv', 'lib', 'python3.11', 'site-packages')
+if venv_site_packages not in sys.path:
+    sys.path.insert(0, venv_site_packages)
 
 def main():
     """Run administrative tasks."""

@@ -1,4 +1,4 @@
-#!/Users/macphyle/sei-319/projects/capstone-project/lingoconnect/venv/bin/python3
+#!/Users/macphyle/sei-319/projects/capstone-project/lingoconnect/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
