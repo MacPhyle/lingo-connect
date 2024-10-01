@@ -1,5 +1,5 @@
 import calendar
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
@@ -16,20 +16,37 @@ def home(request):
     return render(request, 'home.html')
 
 @login_required
-def calendar_view(request):
-    now = datetime.now()
-    year = now.year
-    month = now.month
+def current_month_calendar_view(request):
+    today = datetime.now()
+    return redirect('calendar_view', year=today.year, month=today.month)
+
+@login_required
+def calendar_view(request, year, month):
+    
+    current_date = datetime(year, month, 1)
+    
+    prev_month = current_date - timedelta(days=1)
+    prev_month_year = prev_month.year
+    prev_month_month = prev_month.month
+    
+    next_month = current_date + timedelta(days=calendar.monthrange(year, month)[1])
+    next_month_year = next_month.year
+    next_month_month = next_month.month
     
     cal = calendar.Calendar()
     
     month_days = cal.monthdayscalendar(year, month)
+    month_name = calendar.month_name[month]
     
     context = {
-        'month_days': month_days,
         'year': year,
         'month': month,
-        'month_name': calendar.month_name[month],
+        'month_name': month_name,
+        'month_days': month_days,
+        'prev_month_year': prev_month_year,
+        'prev_month_month': prev_month_month,
+        'next_month_year': next_month_year,
+        'next_month_month': next_month_month,
     }
     
     return render(request, 'calendar.html', context)
@@ -68,8 +85,10 @@ def update_event(request, id):
             form.save()
             print(f"Event updated: {event}")
             return redirect('date_details', year=event.date.year, month=event.date.month, day=event.date.day)
+        else:
+            print("Form is not valid")
+            print(form.errors)
     else:
-        print("Form is not valid")
         form = EventForm(instance=event)
         
     return render(request, 'update_event.html', {'form': form, 'event': event})

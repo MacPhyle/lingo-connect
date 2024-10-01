@@ -24,12 +24,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('calendar/', views.calendar_view, name='calendar'),
+    path('calendar/', views.current_month_calendar_view, name='calendar'),
+    path('calendar/<int:year>/<int:month>/', views.calendar_view, name='calendar_view'),
     path('calendar/<int:year>/<int:month>/<int:day>/', views.date_details, name='date_details'),
     path('calendar/create_event/', views.create_event, name='create_event'),
     path('update/<int:id>/', views.update_event, name='update_event'),
     path('delete/<int:id>/', views.delete_event, name='delete_event'),
-    # path('calendar/event_data/', views.event_data, name='event_data'),
     path('login/', views.CustomLoginView.as_view(), name='login'),
     path('chat/', views.chat, name='chat'),
     path('forum/', views.forum, name='forum'),

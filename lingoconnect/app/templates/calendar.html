@@ -6,7 +6,11 @@
 
 <!-- {% load static %} -->
 <div class="container">
-    <h1>{{ month_name }} {{ year }}</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <a href="{% url 'calendar_view' prev_month_year prev_month_month %}" class="btn btn-primary">&laquo; Previous</a>
+        <h1>{{ month_name }} {{ year }}</h1>
+        <a href="{% url 'calendar_view' next_month_year next_month_month %}" class="btn btn-primary">Next &raquo;</a>
+    </div>
     <a href="{% url 'create_event' %}" class="btn btn-success mb-3">Add an Event</a>
     <table class="table table-bordered">
         <thead>

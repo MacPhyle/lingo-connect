@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
     
 class Event(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=200)
     location = models.CharField(max_length=50)
     category = models.CharField(max_length=50)
     date = models.DateField()
@@ -15,4 +15,4 @@ class Event(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="owned_events", default=1)
     
     def __str__(self):
-        return self.name
+        return self.title

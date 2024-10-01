@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lingo Connect</title>
-    <link rel="stylesheet" href="static/css/style.css">
-</head>
-<body>
-    {% extends 'base.html' %}
+{% extends 'base.html' %}
     
-    {% block content %}
-        <h1>Welcome to Lingo Connect</h1>
-        <p>Connect with other language learners and practice your language skills!</p>
-        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
-        <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
-    {% endblock %}
-</body>
-</html>
+{% block content %}
+    <h1>Welcome to Lingo Connect</h1>
+    <p>Connect with other language learners and practice your language skills!</p>
+    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+{% endblock %}
