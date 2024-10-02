@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # The Capstone Project 🎉
 
 It is Final Project time!
@@ -172,3 +173,7 @@ Your capstone project should be an app that
 In closing if you have any questions regarding these options, feel free to reach out to your instructional team for advice. 
 
 Good luck!
+=======
+# Lingo Connect
+A platform where native speakers connect with language learners for personalized lessons and cultural exchange
+>>>>>>> 2181e03d4089f74f0310efee58ca59ce68e9ecc1
