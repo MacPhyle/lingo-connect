@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Date Details{% endblock %}
+
+{% block content %}
+<div class="details-container">
+    <h1>Details for {{ date }}</h1>
+    <ul class="list-unstyled events-list">
+        {% for event in events %}
+            <li class="event-item">
+                <div class="event-time"><strong>{{ event.time }}</strong></div>
+                <ul class="list-styled event-details">
+                    <li><strong>{{ event.title }}</strong></li>
+                    <li>{{ event.location }}</li>
+                    <li>{{ event.description }}</li>
+                </ul>
+                <a href="{% url 'update_event' event.id %}" class="btn btn-primary">Edit</a>
+                <form action="{% url 'delete_event' event.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+            </li>
+        {% empty %}
+            <li>No events for this date.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

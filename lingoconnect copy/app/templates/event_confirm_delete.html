@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="confirm-delete-container">
+    <h1>Delete Event</h1>
+    <h2>Are you sure you want to delete "{{ event.title }}"?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, delete</button>
+        <a href="{% url 'calendar' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
