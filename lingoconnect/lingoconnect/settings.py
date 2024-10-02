@@ -116,7 +116,7 @@ WSGI_APPLICATION = "lingoconnect.wsgi.application"
 DATABASES = {
     'default': dj_database_url.config(
         
-        default='postgres://macphyle:5432@localhost/lingoconnect', conn_max_age=600, conn_health_checks=True
+        default='postgres://macphyle:password@5432@localhost/lingoconnect', conn_max_age=600, conn_health_checks=True
     )
 }
 
